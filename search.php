@@ -24,7 +24,7 @@ echo $text;
  // //Setting the limit and offset to retrive required data
   $offset=$value*6;
 
-  $data=new Pagination("SELECT * from questions WHERE match(question) against('$text')",6,$offset);
+  $data=new Pagination("SELECT * from questions WHERE match(question) against('$text)",6,$offset);
   $questionSet=$data->get();
   $pageNumber=$data->pageNumber("SELECT * from questions WHERE match(question) against('$text')");
   }
@@ -39,7 +39,6 @@ if (($_SERVER["REQUEST_METHOD"] == "GET") && isset($_GET['answer-click'])) {
 }
 ?>
 
-?>
 
 <!doctype html>
 <html lang="en">

@@ -9,7 +9,7 @@
 	$lastName = $_POST['lastname'];
         $userName = $_POST['userName'];
 	$email = $_POST['email'];
-	$password =md5($_POST['password']);
+	$password =$_POST['password'];
     
      //Creating object for checking username availvity
     $checkUsername=new CheckFields();

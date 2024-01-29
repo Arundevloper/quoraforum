@@ -73,13 +73,7 @@ class Validation
 			$this->addError('cpassword', 'password and confirm passowrd or not same');
 		}
 	}
-	protected function phoneNumber()
-	{
-		$val = trim($this->data['phno']);
-		if (!preg_match('/^[0-9]{10}+$/', $val)) {
-			$this->addError('phno', 'Invalid Phone Number');
-		}
-	}
+	
 }
 //validation for phone number
 //validation for modal function
@@ -156,7 +150,7 @@ class Signup extends Validation
 		$this->validatePassword();
 		$this->firstname();
 		$this->lastname();
-		$this->phoneNumber();
+		
 
 		//Validation for empty fields
 		$this->validateEmpty('userName', 'username');

@@ -7,7 +7,7 @@ class Dbh{
 	private $dbname; 
 
 	protected function connect(){
-		$this->servername="localhost";
+		$this->servername="localhost:3307";
 		$this->username="root";
 		$this->password="";
 		$this->dbname="quora";

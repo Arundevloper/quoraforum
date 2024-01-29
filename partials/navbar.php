@@ -15,7 +15,7 @@ if(isset($_SESSION['userName']) && $_SESSION['login']=true){
         }
      }
      if(isset($_POST['search'])){
-    echo "hello";
+   // echo "hello";
     $text=$_POST['searchText'];
     $_SESSION['searchText']=$text;
     header("location:search.php");

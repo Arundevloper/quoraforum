@@ -8,7 +8,30 @@ $questionId=$_SESSION['ques_id'];
 
 //--------------------------------------------------------------------------------------------------------------------------
 
-$sql="SELECT answer.ansImg,answer.ans_id,users_info.userName as aUserName,users_info.userImage,questions.userName as qUserName,questions.post, questions.question,answer.answer,answer.ansImg,answer.DT FROM questions INNER JOIN answer on questions.ques_id=$questionId and answer.ques_id=$questionId INNER JOIN users_info on answer.userName=users_info.userName ORDER by  answer.DT desc ";
+$sql="SELECT
+answer.ansImg,
+answer.ans_id,
+users_info.userName AS aUserName,
+users_info.userImage,
+questions.userName AS qUserName,
+questions.post,
+questions.question,
+answer.answer,
+answer.DT,
+COUNT(DISTINCT likes.likeid) AS likecount,
+COUNT(DISTINCT dislikes.dislike_id) AS dislikecount,
+COUNT(DISTINCT likes.likeid) / NULLIF(COUNT(DISTINCT dislikes.dislike_id)+COUNT(DISTINCT likes.likeid), 0) AS ratio
+FROM
+questions
+INNER JOIN answer ON questions.ques_id = $questionId AND answer.ques_id = $questionId
+INNER JOIN users_info ON answer.userName = users_info.userName
+LEFT JOIN likes ON answer.ans_id = likes.ans_id
+LEFT JOIN dislikes ON answer.ans_id = dislikes.ans_id
+GROUP BY
+answer.ans_id
+ORDER BY
+ratio DESC,
+answer.DT DESC ";
 
 $answerSet=new Users();
 $answerCount=$answerSet->getTheData("SELECT * FROM `answer` where `ques_id`=$questionId");
@@ -96,7 +119,7 @@ if(isset($_POST['answer'])){
 				</span></h1>
 			<p style="font-weight:bold;">-<span style="color: #5A79A5;">
 					<?php echo $aUserName." ";?><span>
-						<?php echo $aDate;?>
+						 <?php echo $aDate;?>
 					</span>
 			</p>
 			<form action="answer.php" method="POST">
@@ -338,18 +361,16 @@ if(isset($_POST['answer'])){
 
 				//loading comment
 			  function loadcomment(ans_id){
-				  console.log("one thik");
-				var count=$('div[id^=commentPost]').length
-				var limit =count*2;
-				
-				console.log(limit);
+				var commentBoxes=$("#CommentBoxes").length;
+				console.log(commentBoxes);
+
 				$('#loadcomment').addClass('d-none');
 				$('#load-more-comment').removeClass('d-none');
 				$('#commentPost').removeClass('d-none');
 				$.ajax({
 						url: 'ajax/loadComment.php',
 						type: 'post',
-						data: 'lol=like,&ans_id=' + ans_id+'&limit='+limit,
+						data: 'lol=like,&ans_id=' + ans_id+'&limit='+6,
 						success: function (result) {
 						$('#commentPost').html(result);
 						}

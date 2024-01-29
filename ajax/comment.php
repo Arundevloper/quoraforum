@@ -16,7 +16,7 @@ if($type=="comment")
  foreach($retriveFields as $fields){
 	$phpdate = strtotime( $fields['dateTime'] );
 	$mysqldate = date( 'j  F, Y @ g:i a', $phpdate );
-            echo '<div class="user-container">
+            echo '<div class="user-container" id="commentboxes">
 	    <img class="profile-pic lol user_img"  data-toggle="dropdown"  src="data:image/png;base64,'.base64_encode($fields["userImage"]).'" alt="">
 	    <p class="user-college" style="color:#5A79A5;font-weight:bold;"><a href="like">like</a> (12) <a href="">dislike</a> (1)</p>
 	    <p class="user-name"><strong>'.$fields["userName"].'</strong></p>

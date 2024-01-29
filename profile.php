@@ -104,7 +104,7 @@ if (isset($_POST['imageUpdate'])) {
 	<?php include 'partials/navbar.php';
 
 	echo '
-<div class="container" style="position:absolute; margin-top:112px;margin-left:429px;border-radius: 25px;">
+<div class="container" style="position:absolute; margin-top:112px;margin-left:320px;border-radius: 50px;">
 <img src="data:image/png;base64,' . base64_encode($userImage) . '"
 						alt="" height="250px"  and width="250px"/>
 						
@@ -138,7 +138,7 @@ if (isset($_POST['imageUpdate'])) {
 				</div>
 			</div>
 			<div class="col-md-2">
-				<div class="flex" style="display: flex;">
+				<div class="flex" style="display: flex;margin-right:300px;">
 				<a style="margin:5px;" ><input type="button" class="profile-edit-btn" name="btnAddMore"  value="Change Password" data-toggle="modal" data-target="#exampleModal" /></a>
 				<a style="margin:5px;"><input type="button" class="profile-edit-btn" name="btnAddMore" value="Change photo" data-toggle="modal" data-target="#changeImage"" /></a>
 				<a href="editProfile.php" style="margin:5px;"><input type="button" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" /></a>

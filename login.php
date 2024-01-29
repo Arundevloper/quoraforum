@@ -8,7 +8,7 @@
 	
 
          $userName=$_POST['userName'];
-         $password = md5($_POST['password']);
+         $password =$_POST['password'];
 	
 	//Checking if the username and passwords are correct or not
  	$login=new CheckFields();
